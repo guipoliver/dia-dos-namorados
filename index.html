@@ -28,15 +28,17 @@
     }
 
     .carousel-images, .carousel-phrases {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
 
-    .carousel img {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-    }
+.carousel-images > img {
+  flex: 0 0 100%;
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
 
     .phrase {
       min-width: 100%;
@@ -134,7 +136,6 @@
   </div>
 
  <script>
-  // Carrossel de imagens
   // Carrossel de imagens
 let imgIndex = 0;
 const imageCarousel = document.getElementById('imageCarousel');
