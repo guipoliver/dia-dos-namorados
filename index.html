@@ -59,6 +59,48 @@
         font-size: 1.1rem;
       }
     }
+    .heart {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background-color: #ff5c8d;
+  transform: rotate(45deg);
+  top: 100vh;
+  left: 50%;
+  animation: rise 4s linear forwards;
+  z-index: 1000;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff5c8d;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: -10px;
+}
+
+@keyframes rise {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(1.5) rotate(45deg);
+  }
+}
   </style>
 </head>
 <body>
@@ -68,9 +110,12 @@
   <!-- Carrossel de imagens -->
   <div class="carousel">
     <div class="carousel-images" id="imageCarousel">
-      <img src="img1.jpg" alt="Foto 1">
-      <img src="img2.jpg" alt="Foto 2">
-      <img src="img3.jpg" alt="Foto 3">
+      <img src="foto1.jpeg" alt="Foto 1">
+      <img src="foto2.jpeg" alt="Foto 2">
+      <img src="foto3.jpeg" alt="Foto 3">
+      <img src="foto4.jpeg" alt="Foto 1">
+      <img src="foto5.jpeg" alt="Foto 2">
+      <img src="foto6.jpeg" alt="Foto 3">
     </div>
   </div>
 
@@ -90,14 +135,15 @@
 
  <script>
   // Carrossel de imagens
-  let imgIndex = 0;
-  const imageCarousel = document.getElementById('imageCarousel');
-  const totalImgs = imageCarousel.children.length;
+  // Carrossel de imagens
+let imgIndex = 0;
+const imageCarousel = document.getElementById('imageCarousel');
+const totalImgs = imageCarousel.children.length;
 
-  setInterval(() => {
-    imgIndex = (imgIndex + 1) % totalImgs;
-    imageCarousel.style.transform = `translateX(-${imgIndex * 100}%)`;
-  }, 3000);
+setInterval(() => {
+  imgIndex = (imgIndex + 1) % totalImgs;
+  imageCarousel.style.transform = `translateX(-${imgIndex * 100}%)`;
+}, 3000);
 
   // Carrossel de frases
   let phraseIndex = 0;
@@ -137,4 +183,23 @@
   atualizarContador();
   setInterval(atualizarContador, 1000); // Atualiza a cada segundo
 </script>
+<script>
+  // Função para gerar corações animados
+  function criarCoracoes() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }
+
+  // Criar corações nos primeiros segundos após carregar a página
+  for (let i = 0; i < 30; i++) {
+    setTimeout(criarCoracoes, i * 200);
+  }
+</script>
+
 </body>
