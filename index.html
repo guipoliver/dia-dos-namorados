@@ -160,7 +160,7 @@
   <div class="counter-title">❤️ Eu te amo há:</div>
 
   <!-- Contador de tempo juntos -->
-  <div class="counter" id="contador"></div>
+  <div class="counter" id="contador">Carregando...</div>
 
  <!-- Mensagem de amor -->
 <div class="love-message">
@@ -209,7 +209,7 @@
       `${minutos.toString().padStart(2, '0')}min ` +
       `${segundos.toString().padStart(2, '0')}s`;
 
-    document.getElementById('contador').textContent = `Estamos juntos há ${texto}`;
+    document.getElementById('contador').textContent = texto;
   }
 
   atualizarContador();
