@@ -148,11 +148,11 @@
   <!-- Carrossel de imagens -->
   <div class="carousel">
     <div class="carousel-images" id="imageCarousel">
-      <img src="foto1.jpeg" alt="Foto 1">
       <img src="foto2.jpeg" alt="Foto 2">
       <img src="foto3.jpeg" alt="Foto 3">
       <img src="foto4.jpeg" alt="Foto 4">
       <img src="foto5.jpeg" alt="Foto 5">
+      <img src="foto1.jpeg" alt="Foto 1">
     </div>
   </div>
 
@@ -160,7 +160,7 @@
   <div class="counter-title">❤️ Eu te amo há:</div>
 
   <!-- Contador de tempo juntos -->
-  <div class="counter" id="contador">Carregando...</div>
+  <div class="counter" id="contador"></div>
 
  <!-- Mensagem de amor -->
 <div class="love-message">
@@ -171,68 +171,61 @@
   Heloísa, eu te amo. 💖
 </div>
 
-  <script>
-    // Carrossel de imagens
-    let imgIndex = 0;
-    const imageCarousel = document.getElementById('imageCarousel');
-    const totalImgs = imageCarousel.children.length;
+ <script>
+  // Carrossel de imagens
+  let imgIndex = 0;
+  const imageCarousel = document.getElementById('imageCarousel');
+  const totalImgs = imageCarousel.children.length;
 
-    setInterval(() => {
-      imgIndex = (imgIndex + 1) % totalImgs;
-      imageCarousel.style.transform = `translateX(-${imgIndex * 100}%)`;
-    }, 3000);
+  setInterval(() => {
+    imgIndex = (imgIndex + 1) % totalImgs;
+    imageCarousel.style.transform = `translateX(-${imgIndex * 100}%)`;
+  }, 3000);
 
-    // Carrossel de frases
-    let phraseIndex = 0;
-    const phraseCarousel = document.getElementById('phraseCarousel');
-    const totalPhrases = phraseCarousel.children.length;
+  // Contador de tempo juntos
+  function atualizarContador() {
+    const inicio = new Date('2024-09-21T00:00:00');
+    const agora = new Date();
+    let diff = agora - inicio;
 
-    setInterval(() => {
-      phraseIndex = (phraseIndex + 1) % totalPhrases;
-      phraseCarousel.style.transform = `translateX(-${phraseIndex * 100}%)`;
-    }, 4000);
-
-    // Contador
-    function atualizarContador() {
-      const inicio = new Date('2024-09-21T00:00:00');
-      const agora = new Date();
-      let diff = agora - inicio;
-
-      const segundosTotais = Math.floor(diff / 1000);
-      const anos = Math.floor(segundosTotais / (365.25 * 24 * 60 * 60));
-      const meses = Math.floor((segundosTotais % (365.25 * 24 * 60 * 60)) / (30.44 * 24 * 60 * 60));
-      const dias = Math.floor((segundosTotais % (30.44 * 24 * 60 * 60)) / (24 * 60 * 60));
-      const horas = Math.floor((segundosTotais % (24 * 60 * 60)) / (60 * 60));
-      const minutos = Math.floor((segundosTotais % (60 * 60)) / 60);
-      const segundos = segundosTotais % 60;
-
-      const texto = 
-        `${anos} ano(s), ` +
-        `${meses} mês(es), ` +
-        `${dias} dia(s), ` +
-        `${horas.toString().padStart(2, '0')}h ` +
-        `${minutos.toString().padStart(2, '0')}min ` +
-        `${segundos.toString().padStart(2, '0')}s`;
-
-      document.getElementById('contador').textContent = texto;
+    if (diff < 0) {
+      document.getElementById('contador').textContent = 'A data de início é no futuro!';
+      return;
     }
 
-    atualizarContador();
-    setInterval(atualizarContador, 1000);
+    const segundosTotais = Math.floor(diff / 1000);
+    const anos = Math.floor(segundosTotais / (365.25 * 24 * 60 * 60));
+    const meses = Math.floor((segundosTotais % (365.25 * 24 * 60 * 60)) / (30.44 * 24 * 60 * 60));
+    const dias = Math.floor((segundosTotais % (30.44 * 24 * 60 * 60)) / (24 * 60 * 60));
+    const horas = Math.floor((segundosTotais % (24 * 60 * 60)) / (60 * 60));
+    const minutos = Math.floor((segundosTotais % (60 * 60)) / 60);
+    const segundos = segundosTotais % 60;
 
-    // Corações animados ao entrar
-    function criarCoracoes() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = 3 + Math.random() * 2 + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
+    const texto = 
+      `${anos} ano(s), ` +
+      `${meses} mês(es), ` +
+      `${dias} dia(s), ` +
+      `${horas.toString().padStart(2, '0')}h ` +
+      `${minutos.toString().padStart(2, '0')}min ` +
+      `${segundos.toString().padStart(2, '0')}s`;
 
-    for (let i = 0; i < 30; i++) {
-      setTimeout(criarCoracoes, i * 200);
-    }
-  </script>
-</body>
-</html>
+    document.getElementById('contador').textContent = `Estamos juntos há ${texto}`;
+  }
+
+  atualizarContador();
+  setInterval(atualizarContador, 1000);
+
+  // Corações animados ao entrar
+  function criarCoracoes() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+
+  for (let i = 0; i < 30; i++) {
+    setTimeout(criarCoracoes, i * 200);
+  }
+</script>
