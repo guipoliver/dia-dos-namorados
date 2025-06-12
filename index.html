@@ -76,7 +76,6 @@
       }
     }
 
-    /* Animação dos corações */
     .heart {
       position: fixed;
       width: 20px;
@@ -145,7 +144,6 @@
 
   <h1>Feliz Dia dos Namorados</h1>
 
-  <!-- Carrossel de imagens -->
   <div class="carousel">
     <div class="carousel-images" id="imageCarousel">
       <img src="foto2.jpeg" alt="Foto 2">
@@ -156,23 +154,20 @@
     </div>
   </div>
 
-  <!-- Título do contador -->
   <div class="counter-title">❤️ Eu te amo há:</div>
 
-  <!-- Contador de tempo juntos -->
   <div class="counter" id="contador">Carregando...</div>
 
- <!-- Mensagem de amor -->
 <div class="love-message">
   Esse é nosso primeiro Dia dos Namorados juntos, quero que saiba que não vou conseguir viver os próximos se não forem com você.  
   Até porque não sei se ainda consigo viver sem te ter ao meu lado.  
   A vida tem sido mais leve sempre que lembro que te tenho nela, e espero que nossos dias continuem assim para sempre.  
   <br>
-  Heloísa, eu te amo. 💖
+  Heloisa, eu te amo. 💖
 </div>
 
  <script>
-  // Carrossel de imagens
+
   let imgIndex = 0;
   const imageCarousel = document.getElementById('imageCarousel');
   const totalImgs = imageCarousel.children.length;
@@ -182,7 +177,6 @@
     imageCarousel.style.transform = `translateX(-${imgIndex * 100}%)`;
   }, 3000);
 
-  // Contador de tempo juntos
   function atualizarContador() {
     const inicio = new Date('2024-09-21T00:00:00');
     const agora = new Date();
@@ -215,7 +209,6 @@
   atualizarContador();
   setInterval(atualizarContador, 1000);
 
-  // Corações animados ao entrar
   function criarCoracoes() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
