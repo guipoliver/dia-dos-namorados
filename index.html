@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz Dia dos Namorados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -15,8 +16,9 @@
 
     h1 {
       margin-top: 40px;
-      font-size: 2.5rem;
+      font-size: 3rem;
       color: #ff5c8d;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
     }
 
     .carousel {
@@ -25,20 +27,38 @@
       overflow: hidden;
       border-radius: 15px;
       box-shadow: 0 0 10px rgba(255, 92, 141, 0.5);
+      position: relative;
     }
 
-    .carousel-images, .carousel-phrases {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 100%;
-}
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+    }
 
-.carousel-images > img {
-  flex: 0 0 100%;
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-}
+    .carousel-images img {
+      flex: 0 0 100%;
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    .counter-title {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #ff9fbf;
+    }
+
+    .counter {
+      margin: 10px 0 40px 0;
+      font-size: 1.5rem;
+      color: #ffc1d3;
+    }
+
+    .carousel-phrases {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
 
     .phrase {
       min-width: 100%;
@@ -47,62 +67,78 @@
       font-style: italic;
     }
 
-    .counter {
-      margin: 40px 0;
-      font-size: 1.5rem;
-      color: #ffc1d3;
-    }
-
     @media (max-width: 600px) {
       h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
       .phrase {
         font-size: 1.1rem;
       }
     }
+
+    /* Animação dos corações */
     .heart {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background-color: #ff5c8d;
-  transform: rotate(45deg);
-  top: 100vh;
-  left: 50%;
-  animation: rise 4s linear forwards;
-  z-index: 1000;
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: #ff5c8d;
+      transform: rotate(45deg);
+      top: 100vh;
+      left: 50%;
+      animation: rise 4s linear forwards;
+      z-index: 1000;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff5c8d;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes rise {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100vh) scale(1.5) rotate(45deg);
+      }
+    }
+    .love-message {
+  margin: 40px auto;
+  padding: 20px;
+  max-width: 90%;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: #ffc1d3;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #ff5c8d;
+  border-radius: 10px;
+  white-space: pre-line;
 }
 
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #ff5c8d;
-  border-radius: 50%;
-}
-
-.heart::before {
-  top: -10px;
-  left: 0;
-}
-
-.heart::after {
-  top: 0;
-  left: -10px;
-}
-
-@keyframes rise {
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotate(45deg);
+@media (max-width: 600px) {
+  .love-message {
+    font-size: 1.1rem;
   }
-  100% {
-    opacity: 0;
-    transform: translateY(-100vh) scale(1.5) rotate(45deg);
-  }
 }
+
   </style>
 </head>
 <body>
@@ -117,90 +153,86 @@
       <img src="foto3.jpeg" alt="Foto 3">
       <img src="foto4.jpeg" alt="Foto 4">
       <img src="foto5.jpeg" alt="Foto 5">
-      <img src="foto6.jpeg" alt="Foto 6">
     </div>
   </div>
+
+  <!-- Título do contador -->
+  <div class="counter-title">❤️ Eu te amo há:</div>
 
   <!-- Contador de tempo juntos -->
-  <div class="counter" id="contador">
-    Estamos juntos há ...
-  </div>
+  <div class="counter" id="contador">Carregando...</div>
 
-  <!-- Carrossel de frases -->
-  <div class="carousel">
-    <div class="carousel-phrases" id="phraseCarousel">
-      <div class="phrase">"Você é meu sonho que virou realidade."</div>
-      <div class="phrase">"Cada momento contigo é meu favorito."</div>
-      <div class="phrase">"Te amo mais a cada dia que passa."</div>
-    </div>
-  </div>
+ <!-- Mensagem de amor -->
+<div class="love-message">
+  Esse é nosso primeiro Dia dos Namorados juntos, quero que saiba que não vou conseguir viver os próximos se não forem com você.  
+  Até porque não sei se ainda consigo viver sem te ter ao meu lado.  
+  A vida tem sido mais leve sempre que lembro que te tenho nela, e espero que nossos dias continuem assim para sempre.  
+  <br>
+  Heloísa, eu te amo. 💖
+</div>
 
- <script>
-  // Carrossel de imagens
-let imgIndex = 0;
-const imageCarousel = document.getElementById('imageCarousel');
-const totalImgs = imageCarousel.children.length;
+  <script>
+    // Carrossel de imagens
+    let imgIndex = 0;
+    const imageCarousel = document.getElementById('imageCarousel');
+    const totalImgs = imageCarousel.children.length;
 
-setInterval(() => {
-  imgIndex = (imgIndex + 1) % totalImgs;
-  imageCarousel.style.transform = `translateX(-${imgIndex * 100}%)`;
-}, 3000);
+    setInterval(() => {
+      imgIndex = (imgIndex + 1) % totalImgs;
+      imageCarousel.style.transform = `translateX(-${imgIndex * 100}%)`;
+    }, 3000);
 
-  // Carrossel de frases
-  let phraseIndex = 0;
-  const phraseCarousel = document.getElementById('phraseCarousel');
-  const totalPhrases = phraseCarousel.children.length;
+    // Carrossel de frases
+    let phraseIndex = 0;
+    const phraseCarousel = document.getElementById('phraseCarousel');
+    const totalPhrases = phraseCarousel.children.length;
 
-  setInterval(() => {
-    phraseIndex = (phraseIndex + 1) % totalPhrases;
-    phraseCarousel.style.transform = `translateX(-${phraseIndex * 100}%)`;
-  }, 4000);
+    setInterval(() => {
+      phraseIndex = (phraseIndex + 1) % totalPhrases;
+      phraseCarousel.style.transform = `translateX(-${phraseIndex * 100}%)`;
+    }, 4000);
 
-  // Contador de tempo juntos com horas, minutos e segundos
-  function atualizarContador() {
-    const inicio = new Date('2024-09-21T00:00:00');
-    const agora = new Date();
-    let diff = agora - inicio;
+    // Contador
+    function atualizarContador() {
+      const inicio = new Date('2024-09-21T00:00:00');
+      const agora = new Date();
+      let diff = agora - inicio;
 
-    const segundosTotais = Math.floor(diff / 1000);
-    const anos = Math.floor(segundosTotais / (365.25 * 24 * 60 * 60));
-    const meses = Math.floor((segundosTotais % (365.25 * 24 * 60 * 60)) / (30.44 * 24 * 60 * 60));
-    const dias = Math.floor((segundosTotais % (30.44 * 24 * 60 * 60)) / (24 * 60 * 60));
-    const horas = Math.floor((segundosTotais % (24 * 60 * 60)) / (60 * 60));
-    const minutos = Math.floor((segundosTotais % (60 * 60)) / 60);
-    const segundos = segundosTotais % 60;
+      const segundosTotais = Math.floor(diff / 1000);
+      const anos = Math.floor(segundosTotais / (365.25 * 24 * 60 * 60));
+      const meses = Math.floor((segundosTotais % (365.25 * 24 * 60 * 60)) / (30.44 * 24 * 60 * 60));
+      const dias = Math.floor((segundosTotais % (30.44 * 24 * 60 * 60)) / (24 * 60 * 60));
+      const horas = Math.floor((segundosTotais % (24 * 60 * 60)) / (60 * 60));
+      const minutos = Math.floor((segundosTotais % (60 * 60)) / 60);
+      const segundos = segundosTotais % 60;
 
-    const texto = 
-      `${anos} ano(s), ` +
-      `${meses} mês(es), ` +
-      `${dias} dia(s), ` +
-      `${horas.toString().padStart(2, '0')}h ` +
-      `${minutos.toString().padStart(2, '0')}min ` +
-      `${segundos.toString().padStart(2, '0')}s`;
+      const texto = 
+        `${anos} ano(s), ` +
+        `${meses} mês(es), ` +
+        `${dias} dia(s), ` +
+        `${horas.toString().padStart(2, '0')}h ` +
+        `${minutos.toString().padStart(2, '0')}min ` +
+        `${segundos.toString().padStart(2, '0')}s`;
 
-    document.getElementById('contador').textContent = `Estamos juntos há ${texto}`;
-  }
+      document.getElementById('contador').textContent = texto;
+    }
 
-  atualizarContador();
-  setInterval(atualizarContador, 1000); // Atualiza a cada segundo
-</script>
-<script>
-  // Função para gerar corações animados
-  function criarCoracoes() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = 3 + Math.random() * 2 + 's';
-    document.body.appendChild(heart);
-    setTimeout(() => {
-      heart.remove();
-    }, 5000);
-  }
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
 
-  // Criar corações nos primeiros segundos após carregar a página
-  for (let i = 0; i < 30; i++) {
-    setTimeout(criarCoracoes, i * 200);
-  }
-</script>
+    // Corações animados ao entrar
+    function criarCoracoes() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
 
+    for (let i = 0; i < 30; i++) {
+      setTimeout(criarCoracoes, i * 200);
+    }
+  </script>
 </body>
+</html>
